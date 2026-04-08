@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f3ef;
+    --surface: #ffffff;
+    --border: #e0dbd4;
+    --text: #1a1814;
+    --muted: #8a857d;
+    --accent: #2d5a3d;
+    --accent-light: #e8f0eb;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  header h1 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  header p {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .field {
+    margin-bottom: 1.5rem;
+  }
+
+  .field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 10px 14px;
+    font-family: var(--sans);
+    font-size: 15px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  .field input:focus {
+    border-color: var(--accent);
+  }
+
+  .field input::placeholder {
+    color: var(--muted);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 8px 10px;
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tab.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .tab:hover:not(.active) {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  .subject-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .subject-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .subject-text {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    background: var(--accent-light);
+    border: 1px solid #c8dccf;
+    border-radius: 5px;
+    padding: 6px 12px;
+    flex: 1;
+    margin: 0 12px;
+  }
+
+  .copy-subj {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+
+  .copy-subj:hover { border-color: var(--accent); color: var(--accent); }
+  .copy-subj.done { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  .preview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text);
+    white-space: pre-wrap;
+    font-family: var(--sans);
+    min-height: 280px;
+    margin-bottom: 1rem;
+  }
+
+  .copy-body {
+    width: 100%;
+    padding: 13px;
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .copy-body:hover { background: #224831; }
+  .copy-body:active { transform: scale(0.99); }
+  .copy-body.done { background: #3a7a50; }
+
+  footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>AI Telefoonassistent</h1>
+    <p>Kopieer het juiste emailtemplate in één klik.</p>
+  </header>
+
+  <div class="field">
+    <label>Naam / Praktijk</label>
+    <input type="text" id="nameInput" placeholder="bijv. Jan de Vries" oninput="render()" />
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="setTab(0)">Solo</button>
+    <button class="tab" onclick="setTab(1)">2–3 personen</button>
+    <button class="tab" onclick="setTab(2)">Team (3+)</button>
+    <button class="tab" onclick="setTab(3)">Online boeking</button>
+  </div>
+
+  <div class="subject-row">
+    <span class="subject-label">Subject</span>
+    <span class="subject-text" id="subjText"></span>
+    <button class="copy-subj" id="copySubj" onclick="copySubj()">Kopieer</button>
+  </div>
+
+  <div class="preview" id="preview"></div>
+
+  <button class="copy-body" id="copyBody" onclick="copyBody()">Kopieer volledige e-mail</button>
+
+  <footer>Gebruik de tabbladen om het juiste template te kiezen.</footer>
+</div>
+
+<script>
+const templates = [
+  {
+    subject: "Korte vraag over uw bereikbaarheid",
+    body: n => `Beste ${n},
+
+Wat gebeurt er met iemand die belt — voor een afspraak, wijziging of annulering — op het moment dat u in behandeling bent?
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
+
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt. Zij spreekt natuurlijk Nederlands, beantwoordt vragen en noteert naam, nummer en reden van contact — waarna u alles overzichtelijk ontvangt via e-mail.
+
+Zo is er altijd iemand bereikbaar, zonder dat u extra personeel nodig heeft.
+
+Steeds meer praktijken werken al met onze telefonische assistent. De investering per maand is vergelijkbaar met één behandeling.
+
+Wilt u haar zelf even testen?`
+  },
+  {
+    subject: "Korte vraag over uw bereikbaarheid",
+    body: n => `Beste ${n},
+
+Wat gebeurt er met iemand die belt — voor een afspraak, wijziging of annulering — op het moment dat jullie allebei in behandeling zijn?
+Die beller hangt op — en jullie weten niet wie het was, of wat de reden was.
+
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt. Zij noteert naam, nummer en reden van contact, waarna jullie alles overzichtelijk ontvangen.
+
+Zo is er altijd iemand bereikbaar, zonder extra personeel.
+
+Steeds meer praktijken werken al met onze telefonische assistent. De investering is vergelijkbaar met één behandeling.
+
+Wilt u haar zelf even testen?`
+  },
+  {
+    subject: "Korte vraag over uw bereikbaarheid",
+    body: n => `Beste ${n},
+
+Wat gebeurt er met iemand die belt — voor een afspraak, wijziging of annulering — op het moment dat iedereen in behandeling is?
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
+
+Met meerdere therapeuten tegelijk blijft de telefoon vaker onbeantwoord dan gedacht.
+
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt en elke oproep vastlegt.
+
+Zo is er altijd iemand bereikbaar, zonder extra personeel.
+
+Meerdere praktijken werken al met onze oplossing. De investering per maand is vergelijkbaar met één à twee behandelingen.
+
+Wilt u haar zelf even testen?`
+  },
+  {
+    subject: "Korte vraag over uw bereikbaarheid",
+    body: n => `Beste ${n},
+
+U heeft een online afsprakensysteem — handig voor afspraken.
+Maar wat gebeurt er met iemand die toch belt — voor een vraag of een wijziging?
+Die beller hangt op — en u weet niet wie het was.
+
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt en alles netjes vastlegt.
+
+Zo is uw praktijk ook telefonisch altijd bereikbaar.
+
+Steeds meer praktijken gebruiken onze telefonische assistent naast hun online systeem. De investering is vergelijkbaar met één behandeling.
+
+Wilt u haar zelf even testen?`
+  }
+];
+
+let current = 0;
+
+function setTab(i) {
+  current = i;
+  document.querySelectorAll('.tab').forEach((t, j) => t.classList.toggle('active', i === j));
+  render();
+}
+
+function getName() {
+  const v = document.getElementById('nameInput').value.trim();
+  return v || '[Naam]';
+}
+
+function render() {
+  const t = templates[current];
+  document.getElementById('subjText').textContent = t.subject;
+  document.getElementById('preview').textContent = t.body(getName());
+  document.getElementById('copyBody').textContent = 'Kopieer volledige e-mail';
+  document.getElementById('copyBody').classList.remove('done');
+  document.getElementById('copySubj').textContent = 'Kopieer';
+  document.getElementById('copySubj').classList.remove('done');
+}
+
+function copyBody() {
+  navigator.clipboard.writeText(templates[current].body(getName())).then(() => {
+    const btn = document.getElementById('copyBody');
+    btn.textContent = 'Gekopieerd!';
+    btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
+  });
+}
+
+function copySubj() {
+  navigator.clipboard.writeText(templates[current].subject).then(() => {
+    const btn = document.getElementById('copySubj');
+    btn.textContent = 'Gekopieerd!';
+    btn.classList.add('done');
+    setTimeout(() => { btn.textContent = 'Kopieer'; btn.classList.remove('done'); }, 2000);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
