@@ -112,9 +112,9 @@
 
   .tab {
     flex: 1;
-    padding: 9px 8px;
+    padding: 9px 6px;
     font-family: var(--sans);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
     text-align: center;
     border: none;
@@ -259,7 +259,8 @@
     <button class="tab active" onclick="setTab(0)">Solo</button>
     <button class="tab" onclick="setTab(1)">2–3 personen</button>
     <button class="tab" onclick="setTab(2)">Team (3+)</button>
-    <button class="tab" onclick="setTab(3)">Follow-up <span class="follow-badge">↩</span></button>
+    <button class="tab" onclick="setTab(3)">Follow-up NEW</button>
+    <button class="tab" onclick="setTab(4)">Follow-up OLD</button>
   </div>
 
   <div class="subject-row">
@@ -328,13 +329,27 @@ Wilt u de agent zelf even testen?`
     subject: "Nog even over mijn vorige bericht",
     body: n => `Beste ${n},
 
-Ik wilde even opvolgen op mijn vorige e-mail.
+Ik wilde mijn vorige bericht nog even kort onder de aandacht brengen.
 
-Heeft u al een moment gehad om erover na te denken? Ik ben benieuwd of u herkent dat er gesprekken verloren gaan op het moment dat u in behandeling bent.
+Wat gebeurt er met iemand die belt terwijl u in behandeling bent?
+Die beller hangt op — en u weet niet wie het was.
 
-Ik kom graag even langs voor een korte kennismaking — of bel u op een moment dat het uitkomt.
+Steeds meer praktijken werken daarom met onze telefonische assistent die op dat moment overneemt.
 
-Wanneer schikt het u?`
+Wilt u dat ik u een kort demo nummer stuur zodat u het zelf kunt testen?`
+  },
+  {
+    subject: "Nog even over mijn vorige bericht",
+    body: n => `Beste ${n},
+
+Ik wilde nog even kort opvolgen op mijn vorige bericht.
+
+Wat gebeurt er met iemand die belt terwijl u in behandeling bent?
+In veel gevallen: die hangt op — en u weet niet wie het was.
+
+Dat is precies het moment waar onze telefonische assistent voor bedoeld is.
+
+Wilt u dat ik u een kort demo nummer stuur zodat u het zelf kunt ervaren?`
   }
 ];
 
