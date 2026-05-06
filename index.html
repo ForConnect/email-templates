@@ -304,14 +304,40 @@ function render() {
 }
 
 function copyBody() {
-  const rawText = templates[current].body(getName());
-  const cleanText = rawText.split('\n[IMG]\n').join('\n');
-  navigator.clipboard.writeText(cleanText).then(() => {
-    const btn = document.getElementById('copyBody');
+  const t = templates[current];
+  const rawText = t.body(getName());
+  const btn = document.getElementById('copyBody');
+
+  function markDone() {
     btn.textContent = 'Gekopieerd ✓';
     btn.classList.add('done');
     setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
-  });
+  }
+
+  if (t.img && rawText.includes('[IMG]')) {
+    // Build HTML version with inline image
+    const parts = rawText.split('\n[IMG]\n');
+    const htmlBody =
+      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;">' +
+      escapeHtml(parts[0]) +
+      '</div>' +
+      '<img src="' + SCREENSHOT + '" style="max-width:420px;margin:12px 0;border-radius:6px;" alt="Voorbeeld e-mail">' +
+      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;">' +
+      (parts[1] ? escapeHtml(parts[1]) : '') +
+      '</div>';
+
+    const plainText = rawText.split('\n[IMG]\n').join('\n');
+
+    try {
+      const htmlBlob = new Blob([htmlBody], { type: 'text/html' });
+      const textBlob = new Blob([plainText], { type: 'text/plain' });
+      navigator.clipboard.write([new ClipboardItem({ 'text/html': htmlBlob, 'text/plain': textBlob })]).then(markDone);
+    } catch(e) {
+      navigator.clipboard.writeText(plainText).then(markDone);
+    }
+  } else {
+    navigator.clipboard.writeText(rawText).then(markDone);
+  }
 }
 
 function copySubj() {
