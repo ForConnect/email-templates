@@ -180,40 +180,20 @@ const templates = [
     img: true,
     body: n => `Beste ${n},
 
-<p>
 Iets wat ik veel hoor van fysio's: het probleem is niet "ik mis oproepen" — maar "ik weet niet wát ik mis". Was het een nieuwe patiënt, een bestaande die een afspraak wil wijzigen of afzeggen? Of gewoon iemand die wilde weten waar ze kunnen parkeren?
-</p>
 
-<p>
 Daar hebben wij <strong>een persoonlijke assistent</strong> voor gemaakt, speciaal ontwikkeld voor fysiotherapeuten. Niet om het persoonlijke contact te vervangen — dat hoort ook niet, vinden wij. Maar de telefoon opnemen als u dat niet kunt, dat wel.
-</p>
 
-<p>
 <strong>De relatie met uw patiënt blijft van u.</strong> De assistent neemt op, vangt het gesprek op — en geeft u het stuur. U beslist wie u als eerste terugbelt.
-</p>
 
-<p>
 Een nieuwe afspraak of een afzegging? De patiënt geeft het door, de assistent legt het vast, en u krijgt direct bericht. Zo kunt u dat vrijgekomen plekje meteen opvullen — <strong>geen gemiste behandeling, geen leeg uur.</strong>
-</p>
+Inmiddels gebruiken meerdere praktijken onze assistent — waaronder Arnhem West Fysio, nu drie maanden actief: 300+ afspraakverzoeken en 100+ administratieve vragen afgehandeld.
 
-<p>
-Inmiddels gebruiken meerdere praktijken onze assistent — waaronder Arnhem West Fysio, nu drie maanden actief:
-<strong>300+ afspraakverzoeken</strong> en
-<strong>100+ administratieve vragen</strong> afgehandeld.
-</p>
-
-<p>
 De kosten? Voor ongeveer <strong>één behandeling per maand krijgt u een persoonlijke assistent</strong> die de telefoon opneemt wanneer u dat zelf niet kunt.
-</p>
 
-<p>
 <strong>Twee weken gratis proberen. Geen setup-kosten. Maandelijks opzegbaar.</strong>
-</p>
 
-<p>
-Even horen hoe het klinkt?
-<strong>026 79 132 73</strong>
-</p>`
+Even horen hoe het klinkt? 026 791 32 73`
   },
 {
     subject: "Re: Even een korte praktische vraag",
@@ -224,11 +204,11 @@ Ik stuurde u onlangs een e-mail. Misschien is die ongemerkt voorbijgegaan — be
 
 Daarom kort en concreet: dit ontvangt u per e-mail zodra een patiënt belt en u niet kunt opnemen:
 [IMG]
-Daarnaast beantwoordt de AI persoonlijke telefonische assistent praktische vragen — openingstijden, tarieven, locatie, parkeren, verzekeringen — zonder dat u daar iets voor hoeft te doen.
+Daarnaast beantwoordt de AI <strong><strong>persoonlijke telefonische assistent</strong></strong> praktische vragen — openingstijden, tarieven, locatie, parkeren, verzekeringen — zonder dat u daar iets voor hoeft te doen.
 
-Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.
+<strong>Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.</strong>
 
-Zelf even horen hoe het klinkt? Bel: 026 79 132 73`
+Zelf even horen hoe het klinkt? Bel: <strong>026 79 132 73</strong>`
   },
   {
     subject: "Laatste bericht — kort en krachtig",
@@ -236,11 +216,11 @@ Zelf even horen hoe het klinkt? Bel: 026 79 132 73`
 
 Ik wil u niet lastigvallen, dus dit is mijn laatste bericht.
 
-Eén vraag: hoeveel keer per week gaat de telefoon terwijl u met een patiënt bezig bent?
+<strong>Eén vraag: hoeveel keer per week gaat de telefoon terwijl u met een patiënt bezig bent?</strong>
 
 Als het antwoord "regelmatig" is, dan is het misschien toch de moeite waard om onze demolijn even te bellen: 026 79 132 73. Het kost nog geen minuut en u hoort direct hoe het werkt.
 
-Voor €39 per maand krijgt u een persoonlijke telefonische assistent die de telefoon opneemt wanneer u met een patiënt bezig bent. Zo worden uw therapeuten ontlast en krijgen uw patiënten altijd iemand aan de lijn.
+Voor €39 per maand krijgt u een <strong>persoonlijke telefonische assistent</strong> die de telefoon opneemt wanneer u met een patiënt bezig bent. Zo worden uw therapeuten ontlast en krijgen uw patiënten altijd iemand aan de lijn.
 
 Hoe dan ook, ik wens u een fijne werkweek.`
   },
@@ -298,7 +278,7 @@ function render() {
       '<img src="' + SCREENSHOT + '" alt="Voorbeeld e-mail samenvatting">' +
       (parts[1] ? '<span>' + escapeHtml(parts[1]) + '</span>' : '');
   } else {
-    preview.textContent = bodyText;
+    preview.innerHTML = bodyText.replace(/\n/g,'<br>');
   }
 
   const cb = document.getElementById('copyBody');
