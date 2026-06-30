@@ -120,6 +120,7 @@
     display: block; max-width: 420px; margin: 1rem 0;
     border-radius: 8px; border: 1px solid var(--border2);
   }
+  .preview strong { color: var(--text); font-weight: 700; }
 
   .copy-body {
     width: 100%; padding: 13px; font-family: var(--sans);
@@ -204,7 +205,7 @@ Ik stuurde u onlangs een e-mail. Misschien is die ongemerkt voorbijgegaan — be
 
 Daarom kort en concreet: dit ontvangt u per e-mail zodra een patiënt belt en u niet kunt opnemen:
 [IMG]
-Daarnaast beantwoordt de AI <strong><strong>persoonlijke telefonische assistent</strong></strong> praktische vragen — openingstijden, tarieven, locatie, parkeren, verzekeringen — zonder dat u daar iets voor hoeft te doen.
+Daarnaast beantwoordt de AI <strong>persoonlijke telefonische assistent</strong> praktische vragen — openingstijden, tarieven, locatie, parkeren, verzekeringen — zonder dat u daar iets voor hoeft te doen.
 
 <strong>Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.</strong>
 
@@ -250,8 +251,12 @@ Heeft u vragen na de demo? Ik vertel u graag meer.`
 
 let current = 0;
 
-function escapeHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+// Pretvara HTML template (sa <strong> i \n) u plain text (bez tagova, sa pravim newline-ovima)
+function htmlToPlainText(html) {
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?strong>/gi, '')
+    .replace(/<\/?b>/gi, '');
 }
 
 function setTab(i) {
@@ -271,14 +276,17 @@ function render() {
   const preview = document.getElementById('preview');
   const bodyText = t.body(getName());
 
-  if (t.img && bodyText.includes('[IMG]')) {
-    const parts = bodyText.split('\n[IMG]\n');
+  // Pretvori \n u <br> da preview izgleda kao u emailu, ali ostavi <strong> netaknut
+  const withBreaks = bodyText.replace(/\n/g, '<br>');
+
+  if (t.img && withBreaks.includes('[IMG]')) {
+    const parts = withBreaks.split('<br>[IMG]<br>');
     preview.innerHTML =
-      '<span>' + escapeHtml(parts[0]) + '</span>' +
+      '<span>' + parts[0] + '</span>' +
       '<img src="' + SCREENSHOT + '" alt="Voorbeeld e-mail samenvatting">' +
-      (parts[1] ? '<span>' + escapeHtml(parts[1]) + '</span>' : '');
+      (parts[1] ? '<span>' + parts[1] + '</span>' : '');
   } else {
-    preview.innerHTML = bodyText.replace(/\n/g,'<br>');
+    preview.innerHTML = withBreaks;
   }
 
   const cb = document.getElementById('copyBody');
@@ -300,29 +308,46 @@ function copyBody() {
     setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
   }
 
+  function markFailed() {
+    btn.textContent = 'Kopiëren mislukt';
+    setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
+  }
+
+  let htmlBody;
+  let plainText;
+
   if (t.img && rawText.includes('[IMG]')) {
-    // Build HTML version with inline image
     const parts = rawText.split('\n[IMG]\n');
-    const htmlBody =
-      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;">' +
-      escapeHtml(parts[0]) +
+    htmlBody =
+      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
+      parts[0].replace(/\n/g, '<br>') +
       '</div>' +
       '<img src="' + SCREENSHOT + '" style="max-width:420px;margin:12px 0;border-radius:6px;" alt="Voorbeeld e-mail">' +
-      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;white-space:pre-wrap;">' +
-      (parts[1] ? escapeHtml(parts[1]) : '') +
+      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
+      (parts[1] ? parts[1].replace(/\n/g, '<br>') : '') +
       '</div>';
-
-    const plainText = rawText.split('\n[IMG]\n').join('\n');
-
-    try {
-      const htmlBlob = new Blob([htmlBody], { type: 'text/html' });
-      const textBlob = new Blob([plainText], { type: 'text/plain' });
-      navigator.clipboard.write([new ClipboardItem({ 'text/html': htmlBlob, 'text/plain': textBlob })]).then(markDone);
-    } catch(e) {
-      navigator.clipboard.writeText(plainText).then(markDone);
-    }
+    plainText = htmlToPlainText(rawText.split('\n[IMG]\n').join('\n'));
   } else {
-    navigator.clipboard.writeText(rawText).then(markDone);
+    htmlBody =
+      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
+      rawText.replace(/\n/g, '<br>') +
+      '</div>';
+    plainText = htmlToPlainText(rawText);
+  }
+
+  try {
+    const htmlBlob = new Blob([htmlBody], { type: 'text/html' });
+    const textBlob = new Blob([plainText], { type: 'text/plain' });
+    navigator.clipboard.write([
+      new ClipboardItem({
+        'text/html': htmlBlob,
+        'text/plain': textBlob
+      })
+    ]).then(markDone).catch(() => {
+      navigator.clipboard.writeText(plainText).then(markDone).catch(markFailed);
+    });
+  } catch (e) {
+    navigator.clipboard.writeText(plainText).then(markDone).catch(markFailed);
   }
 }
 
