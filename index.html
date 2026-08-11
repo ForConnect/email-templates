@@ -217,12 +217,12 @@
     margin-bottom: 1rem;
   }
 
-  .preview .email-paragraph {
-    margin: 0 0 12px 0;
+  .preview p {
+    margin: 0 0 16px 0;
     padding: 0;
   }
 
-  .preview .email-paragraph:last-child {
+  .preview p:last-child {
     margin-bottom: 0;
   }
 
@@ -285,8 +285,6 @@
   </header>
 
 
-  <!-- NAME -->
-
   <div class="field">
 
     <label>Naam / Praktijk</label>
@@ -300,8 +298,6 @@
 
   </div>
 
-
-  <!-- TABS -->
 
   <div class="tabs">
 
@@ -336,8 +332,6 @@
   </div>
 
 
-  <!-- SUBJECT -->
-
   <div class="subject-row">
 
     <span class="subject-label">
@@ -360,15 +354,11 @@
   </div>
 
 
-  <!-- EMAIL -->
-
   <div
     class="preview"
     id="preview"
   ></div>
 
-
-  <!-- COPY -->
 
   <button
     class="copy-body"
@@ -389,20 +379,16 @@
 <script>
 
 
-/* =========================================================
-   EMAIL TEMPLATES
-   ========================================================= */
-
 const templates = [
 
-  /* =======================================================
+  /* =====================================================
      1. EERSTE CONTACT NL
-     ======================================================= */
+     ===================================================== */
 
   {
     subject: "Even een korte praktische vraag",
 
-    body: n => `Beste ${n},
+    body: n => `Beste ${n}
 
 Op uw website zag ik dat patiënten u kunnen bereiken via de telefoon.
 
@@ -422,14 +408,14 @@ Wilt u zelf horen hoe zij klinkt? <strong>Bel onze demo: +31 26 79 132 73</stron
   },
 
 
-  /* =======================================================
+  /* =====================================================
      2. EERSTE CONTACT BE
-     ======================================================= */
+     ===================================================== */
 
   {
     subject: "Even een korte praktische vraag",
 
-    body: n => `Beste ${n},
+    body: n => `Beste ${n}
 
 Op uw website zag ik dat patiënten u kunnen bereiken via de telefoon.
 
@@ -449,14 +435,14 @@ Wilt u zelf horen hoe zij klinkt? <strong>Bel onze Belgische demo: +32 78 70 04 
   },
 
 
-  /* =======================================================
+  /* =====================================================
      3. FOLLOW-UP NL
-     ======================================================= */
+     ===================================================== */
 
   {
     subject: "Re: Even een korte praktische vraag",
 
-    body: n => `Beste ${n},
+    body: n => `Beste ${n}
 
 Ik stuurde u onlangs een e-mail over telefonische bereikbaarheid. Misschien is die ongemerkt voorbijgegaan — begrijpelijk, want u bent waarschijnlijk druk met behandelingen.
 
@@ -476,14 +462,14 @@ Zelf even horen hoe het klinkt? <strong>Bel: +31 26 79 132 73</strong>`
   },
 
 
-  /* =======================================================
+  /* =====================================================
      4. FOLLOW-UP BE
-     ======================================================= */
+     ===================================================== */
 
   {
     subject: "Re: Even een korte praktische vraag",
 
-    body: n => `Beste ${n},
+    body: n => `Beste ${n}
 
 Ik stuurde u onlangs een e-mail over telefonische bereikbaarheid. Misschien is die ongemerkt voorbijgegaan — begrijpelijk, want u bent waarschijnlijk druk met behandelingen.
 
@@ -505,16 +491,12 @@ Zelf even horen hoe het klinkt? <strong>Bel: +32 78 70 04 02</strong>`
 ];
 
 
-/* =========================================================
-   CURRENT TAB
-   ========================================================= */
-
 let current = 0;
 
 
-/* =========================================================
+/* =====================================================
    NAME
-   ========================================================= */
+   ===================================================== */
 
 function getName() {
 
@@ -528,9 +510,9 @@ function getName() {
 }
 
 
-/* =========================================================
-   TAB SWITCH
-   ========================================================= */
+/* =====================================================
+   TAB
+   ===================================================== */
 
 function setTab(index) {
 
@@ -551,20 +533,33 @@ function setTab(index) {
 }
 
 
-/* =========================================================
+/* =====================================================
    EMAIL → HTML
-   ========================================================= */
+   Gmail-friendly <p> structure
+   ===================================================== */
 
 function emailToHtml(text) {
 
-  return text
-    .split(/\n\s*\n/)
-    .map(paragraph => {
+  const paragraphs =
+    text.split(/\n\s*\n/);
+
+  return paragraphs
+    .map((paragraph, index) => {
+
+      const isLast =
+        index === paragraphs.length - 1;
 
       return `
-        <div class="email-paragraph">
+        <p style="
+          margin:0 0 ${isLast ? '0' : '16px'} 0;
+          padding:0;
+          font-family:Arial,Helvetica,sans-serif;
+          font-size:14px;
+          line-height:1.5;
+          color:#202124;
+        ">
           ${paragraph.replace(/\n/g, '<br>')}
-        </div>
+        </p>
       `;
 
     })
@@ -572,9 +567,9 @@ function emailToHtml(text) {
 }
 
 
-/* =========================================================
+/* =====================================================
    HTML → PLAIN TEXT
-   ========================================================= */
+   ===================================================== */
 
 function htmlToPlainText(html) {
 
@@ -586,9 +581,9 @@ function htmlToPlainText(html) {
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER
-   ========================================================= */
+   ===================================================== */
 
 function render() {
 
@@ -599,23 +594,17 @@ function render() {
     template.body(getName());
 
 
-  /* Subject */
-
   document
     .getElementById('subjText')
     .textContent =
       template.subject;
 
 
-  /* Email preview */
-
   document
     .getElementById('preview')
     .innerHTML =
       emailToHtml(email);
 
-
-  /* Reset buttons */
 
   const bodyButton =
     document.getElementById('copyBody');
@@ -637,9 +626,9 @@ function render() {
 }
 
 
-/* =========================================================
-   COPY FULL EMAIL
-   ========================================================= */
+/* =====================================================
+   COPY EMAIL
+   ===================================================== */
 
 function copyBody() {
 
@@ -752,9 +741,9 @@ function copyBody() {
 }
 
 
-/* =========================================================
+/* =====================================================
    COPY SUBJECT
-   ========================================================= */
+   ===================================================== */
 
 function copySubj() {
 
@@ -790,9 +779,9 @@ function copySubj() {
 }
 
 
-/* =========================================================
-   INITIAL RENDER
-   ========================================================= */
+/* =====================================================
+   INITIAL
+   ===================================================== */
 
 render();
 
