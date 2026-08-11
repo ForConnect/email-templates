@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Email Templates — ForConnect</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -200,22 +202,32 @@
     background: var(--cyan-dim);
   }
 
+  /* EMAIL PREVIEW */
+
   .preview {
-    background: var(--surface);
+    background: #ffffff;
     border: 1px solid var(--border2);
     border-radius: 10px;
-    padding: 1.5rem;
-    font-size: 13.5px;
-    line-height: 1.85;
-    color: var(--muted2);
-    white-space: pre-wrap;
-    font-family: var(--sans);
+    padding: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #202124;
     min-height: 260px;
     margin-bottom: 1rem;
   }
 
+  .preview .email-paragraph {
+    margin: 0 0 12px 0;
+    padding: 0;
+  }
+
+  .preview .email-paragraph:last-child {
+    margin-bottom: 0;
+  }
+
   .preview strong {
-    color: var(--text);
+    color: #202124;
     font-weight: 700;
   }
 
@@ -254,8 +266,10 @@
     color: var(--muted);
     letter-spacing: 0.05em;
   }
+
 </style>
 </head>
+
 
 <body>
 
@@ -263,43 +277,77 @@
 
   <header>
     <div class="logo-dot"></div>
+
     <h1>
       AI Telefoonassistent &nbsp;·&nbsp;
       <span>Email Templates</span>
     </h1>
   </header>
 
+
+  <!-- NAME -->
+
   <div class="field">
+
     <label>Naam / Praktijk</label>
+
     <input
       type="text"
       id="nameInput"
       placeholder="bijv. Jan de Vries"
       oninput="render()"
-    />
+    >
+
   </div>
 
+
+  <!-- TABS -->
+
   <div class="tabs">
-    <button class="tab active" onclick="setTab(0)">
+
+    <button
+      class="tab active"
+      onclick="setTab(0)"
+    >
       Eerste contact NL
     </button>
 
-    <button class="tab" onclick="setTab(1)">
+    <button
+      class="tab"
+      onclick="setTab(1)"
+    >
       Eerste contact BE
     </button>
 
-    <button class="tab" onclick="setTab(2)">
+    <button
+      class="tab"
+      onclick="setTab(2)"
+    >
       Follow-up NL
     </button>
 
-    <button class="tab" onclick="setTab(3)">
+    <button
+      class="tab"
+      onclick="setTab(3)"
+    >
       Follow-up BE
     </button>
+
   </div>
 
+
+  <!-- SUBJECT -->
+
   <div class="subject-row">
-    <span class="subject-label">Subject</span>
-    <span class="subject-text" id="subjText"></span>
+
+    <span class="subject-label">
+      Subject
+    </span>
+
+    <span
+      class="subject-text"
+      id="subjText"
+    ></span>
 
     <button
       class="copy-subj"
@@ -308,9 +356,19 @@
     >
       Kopieer
     </button>
+
   </div>
 
-  <div class="preview" id="preview"></div>
+
+  <!-- EMAIL -->
+
+  <div
+    class="preview"
+    id="preview"
+  ></div>
+
+
+  <!-- COPY -->
 
   <button
     class="copy-body"
@@ -320,19 +378,26 @@
     Kopieer volledige e-mail
   </button>
 
+
   <footer>
     forconnect.nl &nbsp;·&nbsp; AI Telefoonassistent
   </footer>
 
 </div>
 
+
 <script>
+
+
+/* =========================================================
+   EMAIL TEMPLATES
+   ========================================================= */
 
 const templates = [
 
-  /* =========================================================
+  /* =======================================================
      1. EERSTE CONTACT NL
-     ========================================================= */
+     ======================================================= */
 
   {
     subject: "Even een korte praktische vraag",
@@ -353,15 +418,13 @@ Wij ontwikkelden een <strong>persoonlijke telefonische assistent</strong> die pr
 
 De investering per maand is <strong>vergelijkbaar met één behandeling</strong>.
 
-Wilt u zelf horen hoe zij klinkt? Wij laten u een korte demo horen via een lokaal nummer — geheel vrijblijvend.
-
-Bel: <strong>+31 26 79 132 73</strong>`
+Wilt u zelf horen hoe zij klinkt? <strong>Bel onze demo: +31 26 79 132 73</strong> — geheel vrijblijvend.`
   },
 
 
-  /* =========================================================
+  /* =======================================================
      2. EERSTE CONTACT BE
-     ========================================================= */
+     ======================================================= */
 
   {
     subject: "Even een korte praktische vraag",
@@ -376,21 +439,19 @@ Die beller hangt op — en u weet niet wie het was, of wat de reden was.
 
 Terugbellen betekent dat u daar later opnieuw tijd voor moet maken — terwijl de kans groot is dat u elkaar mist.
 
-Wij ontwikkelden een <strong>persoonlijke telefonische assistent</strong> die precies op dat moment overneemt. Zij spreekt natuurlijk Nederlands, beantwoordt vragen en noteert naam, nummer en reden van contact — waarna u alles overzichtelijk ontvangt.
+Wij ontwikkelden een <strong>persoonlijke telefonische assistent</strong> die precies op dat moment overneemt. Zij spreekt natuurlijk Nederlands, beantwoordt vragen en noteert naam, nummer en reden van contact — waarna u alles overzichtelijk ontvangt via e-mail.
 
 <strong>Daarnaast kan zij ook direct informatie geven over uw kinesitherapiepraktijk</strong> — zoals locaties, openingstijden, behandelingen, tarieven en vergoedingen.
 
 De investering per maand is <strong>vergelijkbaar met één behandeling</strong>.
 
-Wilt u zelf horen hoe zij klinkt? Wij laten u een korte demo horen via een lokaal nummer — geheel vrijblijvend.
-
-Bel: <strong>+32 78 70 04 02</strong>`
+Wilt u zelf horen hoe zij klinkt? <strong>Bel onze Belgische demo: +32 78 70 04 02</strong> — geheel vrijblijvend.`
   },
 
 
-  /* =========================================================
+  /* =======================================================
      3. FOLLOW-UP NL
-     ========================================================= */
+     ======================================================= */
 
   {
     subject: "Re: Even een korte praktische vraag",
@@ -411,15 +472,13 @@ Daarnaast beantwoordt de <strong>persoonlijke telefonische assistent</strong> pr
 
 <strong>Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.</strong>
 
-Zelf even horen hoe het klinkt?
-
-Bel: <strong>+31 26 79 132 73</strong>`
+Zelf even horen hoe het klinkt? <strong>Bel: +31 26 79 132 73</strong>`
   },
 
 
-  /* =========================================================
+  /* =======================================================
      4. FOLLOW-UP BE
-     ========================================================= */
+     ======================================================= */
 
   {
     subject: "Re: Even een korte praktische vraag",
@@ -440,43 +499,17 @@ Daarnaast beantwoordt de <strong>persoonlijke telefonische assistent</strong> pr
 
 <strong>Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.</strong>
 
-Zelf even horen hoe het klinkt?
-
-Bel: <strong>+32 78 70 04 02</strong>`
+Zelf even horen hoe het klinkt? <strong>Bel: +32 78 70 04 02</strong>`
   }
 
 ];
 
+
+/* =========================================================
+   CURRENT TAB
+   ========================================================= */
+
 let current = 0;
-
-
-/* =========================================================
-   HTML → PLAIN TEXT
-   ========================================================= */
-
-function htmlToPlainText(html) {
-  return html
-    .replace(/<br\s*\/?>/gi, '\n')
-    .replace(/<\/?strong>/gi, '')
-    .replace(/<\/?b>/gi, '');
-}
-
-
-/* =========================================================
-   TAB SWITCH
-   ========================================================= */
-
-function setTab(i) {
-  current = i;
-
-  document
-    .querySelectorAll('.tab')
-    .forEach((t, j) => {
-      t.classList.toggle('active', i === j);
-    });
-
-  render();
-}
 
 
 /* =========================================================
@@ -484,12 +517,72 @@ function setTab(i) {
    ========================================================= */
 
 function getName() {
-  const v = document
-    .getElementById('nameInput')
-    .value
-    .trim();
 
-  return v || '[Naam]';
+  const value =
+    document
+      .getElementById('nameInput')
+      .value
+      .trim();
+
+  return value || '[Naam]';
+}
+
+
+/* =========================================================
+   TAB SWITCH
+   ========================================================= */
+
+function setTab(index) {
+
+  current = index;
+
+  document
+    .querySelectorAll('.tab')
+    .forEach((tab, i) => {
+
+      tab.classList.toggle(
+        'active',
+        i === index
+      );
+
+    });
+
+  render();
+}
+
+
+/* =========================================================
+   EMAIL → HTML
+   ========================================================= */
+
+function emailToHtml(text) {
+
+  return text
+    .split(/\n\s*\n/)
+    .map(paragraph => {
+
+      return `
+        <div class="email-paragraph">
+          ${paragraph.replace(/\n/g, '<br>')}
+        </div>
+      `;
+
+    })
+    .join('');
+}
+
+
+/* =========================================================
+   HTML → PLAIN TEXT
+   ========================================================= */
+
+function htmlToPlainText(html) {
+
+  return html
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/?strong>/gi, '')
+    .replace(/<\/?b>/gi, '');
+
 }
 
 
@@ -499,96 +592,118 @@ function getName() {
 
 function render() {
 
-  const t = templates[current];
+  const template =
+    templates[current];
 
-  document.getElementById('subjText').textContent =
-    t.subject;
+  const email =
+    template.body(getName());
 
-  const preview =
-    document.getElementById('preview');
 
-  const bodyText =
-    t.body(getName());
+  /* Subject */
 
-  preview.innerHTML =
-    bodyText.replace(/\n/g, '<br>');
+  document
+    .getElementById('subjText')
+    .textContent =
+      template.subject;
 
-  const cb =
+
+  /* Email preview */
+
+  document
+    .getElementById('preview')
+    .innerHTML =
+      emailToHtml(email);
+
+
+  /* Reset buttons */
+
+  const bodyButton =
     document.getElementById('copyBody');
 
-  cb.textContent =
+  bodyButton.textContent =
     'Kopieer volledige e-mail';
 
-  cb.classList.remove('done');
+  bodyButton.classList.remove('done');
 
-  const cs =
+
+  const subjectButton =
     document.getElementById('copySubj');
 
-  cs.textContent =
+  subjectButton.textContent =
     'Kopieer';
 
-  cs.classList.remove('done');
+  subjectButton.classList.remove('done');
+
 }
 
 
 /* =========================================================
-   COPY BODY
+   COPY FULL EMAIL
    ========================================================= */
 
 function copyBody() {
 
-  const t =
+  const template =
     templates[current];
 
   const rawText =
-    t.body(getName());
-
-  const btn =
-    document.getElementById('copyBody');
+    template.body(getName());
 
 
-  function markDone() {
-
-    btn.textContent =
-      'Gekopieerd ✓';
-
-    btn.classList.add('done');
-
-    setTimeout(() => {
-
-      btn.textContent =
-        'Kopieer volledige e-mail';
-
-      btn.classList.remove('done');
-
-    }, 2000);
-  }
-
-
-  function markFailed() {
-
-    btn.textContent =
-      'Kopiëren mislukt';
-
-    setTimeout(() => {
-
-      btn.textContent =
-        'Kopieer volledige e-mail';
-
-      btn.classList.remove('done');
-
-    }, 2000);
-  }
-
-
-  const htmlBody =
-    '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
-    rawText.replace(/\n/g, '<br>') +
-    '</div>';
+  const htmlBody = `
+    <div style="
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:14px;
+      line-height:1.5;
+      color:#202124;
+    ">
+      ${emailToHtml(rawText)}
+    </div>
+  `;
 
 
   const plainText =
     htmlToPlainText(rawText);
+
+
+  const button =
+    document.getElementById('copyBody');
+
+
+  function success() {
+
+    button.textContent =
+      'Gekopieerd ✓';
+
+    button.classList.add('done');
+
+
+    setTimeout(() => {
+
+      button.textContent =
+        'Kopieer volledige e-mail';
+
+      button.classList.remove('done');
+
+    }, 2000);
+
+  }
+
+
+  function failure() {
+
+    button.textContent =
+      'Kopiëren mislukt';
+
+
+    setTimeout(() => {
+
+      button.textContent =
+        'Kopieer volledige e-mail';
+
+    }, 2000);
+
+  }
 
 
   try {
@@ -599,36 +714,41 @@ function copyBody() {
         { type: 'text/html' }
       );
 
+
     const textBlob =
       new Blob(
         [plainText],
         { type: 'text/plain' }
       );
 
-    navigator.clipboard.write([
-      new ClipboardItem({
-        'text/html': htmlBlob,
-        'text/plain': textBlob
-      })
-    ])
-    .then(markDone)
-    .catch(() => {
 
-      navigator.clipboard
-        .writeText(plainText)
-        .then(markDone)
-        .catch(markFailed);
+    navigator.clipboard
+      .write([
+        new ClipboardItem({
+          'text/html': htmlBlob,
+          'text/plain': textBlob
+        })
+      ])
+      .then(success)
+      .catch(() => {
 
-    });
+        navigator.clipboard
+          .writeText(plainText)
+          .then(success)
+          .catch(failure);
 
-  } catch (e) {
+      });
+
+
+  } catch (error) {
 
     navigator.clipboard
       .writeText(plainText)
-      .then(markDone)
-      .catch(markFailed);
+      .then(success)
+      .catch(failure);
 
   }
+
 }
 
 
@@ -638,30 +758,35 @@ function copyBody() {
 
 function copySubj() {
 
+  const subject =
+    templates[current].subject;
+
+
   navigator.clipboard
-    .writeText(
-      templates[current].subject
-    )
+    .writeText(subject)
     .then(() => {
 
-      const btn =
+      const button =
         document.getElementById('copySubj');
 
-      btn.textContent =
+
+      button.textContent =
         'Gekopieerd ✓';
 
-      btn.classList.add('done');
+      button.classList.add('done');
+
 
       setTimeout(() => {
 
-        btn.textContent =
+        button.textContent =
           'Kopieer';
 
-        btn.classList.remove('done');
+        button.classList.remove('done');
 
       }, 2000);
 
     });
+
 }
 
 
