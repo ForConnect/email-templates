@@ -6,7 +6,11 @@
 <title>Email Templates — ForConnect</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
   :root {
     --bg: #0a0e14;
@@ -31,7 +35,10 @@
     padding: 2.5rem 1rem;
   }
 
-  .container { max-width: 660px; margin: 0 auto; }
+  .container {
+    max-width: 660px;
+    margin: 0 auto;
+  }
 
   header {
     margin-bottom: 2.5rem;
@@ -41,7 +48,8 @@
   }
 
   .logo-dot {
-    width: 8px; height: 8px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
     background: var(--cyan);
     box-shadow: 0 0 8px var(--cyan);
@@ -49,209 +57,406 @@
   }
 
   header h1 {
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--muted2);
   }
-  header h1 span { color: var(--cyan); }
 
-  .field { margin-bottom: 1.5rem; }
-  .field label {
-    display: block; font-size: 10px; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 8px;
+  header h1 span {
+    color: var(--cyan);
   }
+
+  .field {
+    margin-bottom: 1.5rem;
+  }
+
+  .field label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
   .field input {
-    width: 100%; padding: 11px 16px;
-    font-family: var(--sans); font-size: 14px;
-    background: var(--surface); border: 1px solid var(--border2);
-    border-radius: 8px; color: var(--text); outline: none;
+    width: 100%;
+    padding: 11px 16px;
+    font-family: var(--sans);
+    font-size: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    color: var(--text);
+    outline: none;
     transition: border-color 0.15s;
   }
-  .field input:focus { border-color: var(--cyan-border); box-shadow: 0 0 0 3px rgba(0,229,200,0.06); }
-  .field input::placeholder { color: var(--muted); }
+
+  .field input:focus {
+    border-color: var(--cyan-border);
+    box-shadow: 0 0 0 3px rgba(0,229,200,0.06);
+  }
+
+  .field input::placeholder {
+    color: var(--muted);
+  }
 
   .tabs {
-    display: flex; gap: 0; margin-bottom: 1.5rem;
-    background: var(--surface); border: 1px solid var(--border2);
-    border-radius: 10px; padding: 4px; flex-wrap: wrap;
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 4px;
+    flex-wrap: wrap;
   }
+
   .tab {
-    flex: 1; padding: 9px 6px;
-    font-family: var(--sans); font-size: 11px; font-weight: 500;
-    text-align: center; border: none; background: transparent;
-    color: var(--muted2); border-radius: 7px; cursor: pointer;
-    transition: all 0.15s; white-space: nowrap;
+    flex: 1;
+    padding: 9px 6px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    border: none;
+    background: transparent;
+    color: var(--muted2);
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
   }
-  .tab.active { background: var(--cyan-dim); color: var(--cyan); border: 1px solid var(--cyan-border); }
-  .tab:hover:not(.active) { color: var(--text); background: var(--surface2); }
+
+  .tab.active {
+    background: var(--cyan-dim);
+    color: var(--cyan);
+    border: 1px solid var(--cyan-border);
+  }
+
+  .tab:hover:not(.active) {
+    color: var(--text);
+    background: var(--surface2);
+  }
 
   .subject-row {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 10px; background: var(--surface);
-    border: 1px solid var(--border2); border-radius: 8px; padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    padding: 8px 12px;
   }
+
   .subject-label {
-    font-size: 10px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--muted); flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
   }
+
   .subject-text {
-    font-size: 13px; color: var(--muted2); flex: 1;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    font-size: 13px;
+    color: var(--muted2);
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   .copy-subj {
-    font-family: var(--sans); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.05em; padding: 5px 12px;
-    border: 1px solid var(--border2); background: transparent;
-    color: var(--muted2); border-radius: 6px; cursor: pointer;
-    white-space: nowrap; transition: all 0.15s; flex-shrink: 0;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 5px 12px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--muted2);
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
   }
-  .copy-subj:hover { border-color: var(--cyan-border); color: var(--cyan); }
-  .copy-subj.done { border-color: var(--cyan-border); color: var(--cyan); background: var(--cyan-dim); }
+
+  .copy-subj:hover {
+    border-color: var(--cyan-border);
+    color: var(--cyan);
+  }
+
+  .copy-subj.done {
+    border-color: var(--cyan-border);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
 
   .preview {
-    background: var(--surface); border: 1px solid var(--border2);
-    border-radius: 10px; padding: 1.5rem;
-    font-size: 13.5px; line-height: 1.85;
-    color: var(--muted2); white-space: pre-wrap;
-    font-family: var(--sans); min-height: 260px; margin-bottom: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    font-size: 13.5px;
+    line-height: 1.85;
+    color: var(--muted2);
+    white-space: pre-wrap;
+    font-family: var(--sans);
+    min-height: 260px;
+    margin-bottom: 1rem;
   }
+
   .preview img {
-    display: block; max-width: 420px; margin: 1rem 0;
-    border-radius: 8px; border: 1px solid var(--border2);
+    display: block;
+    max-width: 420px;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border: 1px solid var(--border2);
   }
-  .preview strong { color: var(--text); font-weight: 700; }
+
+  .preview strong {
+    color: var(--text);
+    font-weight: 700;
+  }
 
   .copy-body {
-    width: 100%; padding: 13px; font-family: var(--sans);
-    font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
-    text-transform: uppercase; background: var(--cyan);
-    color: #050a0e; border: none; border-radius: 8px;
-    cursor: pointer; transition: all 0.15s;
+    width: 100%;
+    padding: 13px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--cyan);
+    color: #050a0e;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
   }
-  .copy-body:hover { background: #00ccb4; }
-  .copy-body:active { transform: scale(0.99); }
-  .copy-body.done { background: #00b89f; }
+
+  .copy-body:hover {
+    background: #00ccb4;
+  }
+
+  .copy-body:active {
+    transform: scale(0.99);
+  }
+
+  .copy-body.done {
+    background: #00b89f;
+  }
 
   footer {
-    margin-top: 2rem; text-align: center;
-    font-size: 11px; color: var(--muted); letter-spacing: 0.05em;
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
   }
 </style>
 </head>
+
 <body>
+
 <div class="container">
+
   <header>
     <div class="logo-dot"></div>
-    <h1>AI Telefoonassistent &nbsp;·&nbsp; <span>Email Templates</span></h1>
+    <h1>
+      AI Telefoonassistent &nbsp;·&nbsp;
+      <span>Email Templates</span>
+    </h1>
   </header>
 
   <div class="field">
     <label>Naam / Praktijk</label>
-    <input type="text" id="nameInput" placeholder="bijv. Jan de Vries" oninput="render()" />
+    <input
+      type="text"
+      id="nameInput"
+      placeholder="bijv. Jan de Vries"
+      oninput="render()"
+    />
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="setTab(0)">Eerste contact</button>
-    <button class="tab" onclick="setTab(1)">Follow-up</button>
-    <button class="tab" onclick="setTab(2)">Laatste follow-up</button>
-    <button class="tab" onclick="setTab(3)">Demo uitnodiging</button>
+    <button class="tab active" onclick="setTab(0)">
+      Eerste contact NL
+    </button>
+
+    <button class="tab" onclick="setTab(1)">
+      Eerste contact BE
+    </button>
+
+    <button class="tab" onclick="setTab(2)">
+      Follow-up NL
+    </button>
+
+    <button class="tab" onclick="setTab(3)">
+      Follow-up BE
+    </button>
   </div>
 
   <div class="subject-row">
     <span class="subject-label">Subject</span>
+
     <span class="subject-text" id="subjText"></span>
-    <button class="copy-subj" id="copySubj" onclick="copySubj()">Kopieer</button>
+
+    <button
+      class="copy-subj"
+      id="copySubj"
+      onclick="copySubj()"
+    >
+      Kopieer
+    </button>
   </div>
 
   <div class="preview" id="preview"></div>
 
-  <button class="copy-body" id="copyBody" onclick="copyBody()">Kopieer volledige e-mail</button>
+  <button
+    class="copy-body"
+    id="copyBody"
+    onclick="copyBody()"
+  >
+    Kopieer volledige e-mail
+  </button>
 
-  <footer>forconnect.nl &nbsp;·&nbsp; AI Telefoonassistent</footer>
+  <footer>
+    forconnect.nl &nbsp;·&nbsp; AI Telefoonassistent
+  </footer>
+
 </div>
 
 <script>
-const SCREENSHOT = 'https://email-templates-sandy-nu.vercel.app/screenshot.jpg';
-const IMG_MARKER = '\n[IMG]\n';
 
 const templates = [
+
+  /* =========================================================
+     1. EERSTE CONTACT NL
+     ========================================================= */
+
   {
     subject: "Even een korte praktische vraag",
-    img: true,
+
     body: n => `Beste ${n},
 
-Iets wat ik veel hoor van fysio's: het probleem is niet "ik mis oproepen" — maar "ik weet niet wát ik mis". Was het een nieuwe patiënt, een bestaande die een afspraak wil wijzigen of afzeggen? Of gewoon iemand die wilde weten waar ze kunnen parkeren?
+Op uw website zag ik dat patiënten u kunnen bereiken via [KANALEN].
 
-Daar hebben wij <strong>een persoonlijke telefonische assistent</strong> voor ontwikkeld, speciaal voor fysiotherapiepraktijken. Niet om het persoonlijke contact te vervangen — dat hoort ook niet, vinden wij. Maar de telefoon opnemen als u dat niet kunt, dat wel.
+Maar wat gebeurt er met iemand die belt op het moment dat u in behandeling bent?
 
-<strong>De relatie met uw patiënt blijft van u.</strong> De assistent neemt op, vangt het gesprek op — en geeft u het stuur. U beslist wie u als eerste terugbelt.
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
 
-Een nieuwe afspraak of een afzegging? De patiënt geeft het door, de assistent legt het vast, en u krijgt direct bericht. Zo kunt u dat vrijgekomen plekje meteen opvullen — <strong>geen gemiste behandeling, geen leeg uur.</strong>
-Inmiddels gebruiken meerdere praktijken onze assistent — waaronder Arnhem West Fysio, nu drie maanden actief: 300+ afspraakverzoeken en 100+ administratieve vragen afgehandeld.
+Terugbellen betekent dat u daar later opnieuw tijd voor moet maken — terwijl de kans groot is dat u elkaar mist.
 
-De kosten? Voor ongeveer <strong>één behandeling per maand krijgt u een persoonlijke assistent</strong> die de telefoon opneemt wanneer u dat zelf niet kunt.
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt. Zij spreekt natuurlijk Nederlands, beantwoordt vragen en noteert naam, nummer en reden van contact — waarna u alles overzichtelijk ontvangt via e-mail.
 
-<strong>Twee weken gratis proberen. Geen setup-kosten. Maandelijks opzegbaar.</strong>
+Daarnaast kan zij ook direct informatie geven over uw praktijk — zoals locaties, openingstijden, behandelingen, tarieven en vergoedingen.
 
-Even horen hoe het klinkt? <strong>026 79 132 73</strong>`
+De investering per maand is vergelijkbaar met één behandeling.
+
+Wilt u zelf horen hoe zij klinkt? Bel gerust onze demo via <strong>+31 26 79 132 73</strong> — geheel vrijblijvend.`
   },
-{
+
+
+  /* =========================================================
+     2. EERSTE CONTACT BE
+     ========================================================= */
+
+  {
+    subject: "Even een korte praktische vraag",
+
+    body: n => `Beste ${n},
+
+Op uw website zag ik dat patiënten u kunnen bereiken via [KANALEN].
+
+Maar wat gebeurt er met iemand die belt op het moment dat u in behandeling bent?
+
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
+
+Terugbellen betekent dat u daar later opnieuw tijd voor moet maken — terwijl de kans groot is dat u elkaar mist.
+
+Wij ontwikkelden een telefonische AI-assistent die precies op dat moment overneemt. Zij beantwoordt vragen en noteert naam, nummer en reden van contact — waarna u alles overzichtelijk ontvangt.
+
+Daarnaast kan zij ook direct informatie geven over uw kinesitherapiepraktijk — zoals locaties, openingstijden, behandelingen, tarieven en vergoedingen.
+
+De investering per maand is vergelijkbaar met één behandeling.
+
+Wilt u zelf horen hoe zij klinkt? Bel gerust onze Belgische demo via <strong>+32 78 70 04 02</strong> — geheel vrijblijvend.`
+  },
+
+
+  /* =========================================================
+     3. FOLLOW-UP NL
+     ========================================================= */
+
+  {
     subject: "Re: Even een korte praktische vraag",
-    img: true,
+
     body: n => `Beste ${n},
 
-Ik stuurde u onlangs een e-mail. Misschien is die ongemerkt voorbijgegaan — begrijpelijk, want u bent druk met behandelingen.
+Ik stuurde u onlangs een e-mail over telefonische bereikbaarheid. Misschien is die ongemerkt voorbijgegaan — begrijpelijk, want u bent waarschijnlijk druk met behandelingen.
 
-Daarom kort en concreet: dit ontvangt u per e-mail zodra een patiënt belt en u niet kunt opnemen:
-[IMG]
-Daarnaast beantwoordt de AI <strong>persoonlijke telefonische assistent</strong> praktische vragen — openingstijden, tarieven, locatie, parkeren, verzekeringen — zonder dat u daar iets voor hoeft te doen.
+Daarom kort en concreet:
 
-<strong>Twee weken gratis uitproberen. Geen verplichtingen. Maandelijks opzegbaar.</strong>
+Wat gebeurt er met iemand die belt terwijl u met een patiënt bezig bent?
 
-Zelf even horen hoe het klinkt? Bel: <strong>026 79 132 73</strong>`
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
+
+Terugbellen betekent dat u daar later opnieuw tijd voor moet maken — terwijl de kans groot is dat u elkaar mist.
+
+Onze telefonische AI-assistent neemt op wanneer u dat zelf niet kunt. Zij beantwoordt vragen, noteert de gegevens van de beller en zorgt ervoor dat u precies weet wie er belde en waarom.
+
+Zo mist u geen aanvragen en hoeft u niet zonder context terug te bellen.
+
+Wilt u zelf even horen hoe zij klinkt?
+
+Bel onze Nederlandse demo: <strong>+31 26 79 132 73</strong> — geheel vrijblijvend.`
   },
+
+
+  /* =========================================================
+     4. FOLLOW-UP BE
+     ========================================================= */
+
   {
-    subject: "Laatste bericht — kort en krachtig",
+    subject: "Re: Even een korte praktische vraag",
+
     body: n => `Beste ${n},
 
-Ik wil u niet lastigvallen, dus dit is mijn laatste bericht.
+Ik stuurde u onlangs een e-mail over telefonische bereikbaarheid. Misschien is die ongemerkt voorbijgegaan — begrijpelijk, want u bent waarschijnlijk druk met behandelingen.
 
-<strong>Eén vraag: hoeveel keer per week gaat de telefoon terwijl u met een patiënt bezig bent?</strong>
+Daarom kort en concreet:
 
-Als het antwoord "regelmatig" is, dan is het misschien toch de moeite waard om onze demolijn even te bellen: 026 79 132 73. Het kost nog geen minuut en u hoort direct hoe het werkt.
+Wat gebeurt er met iemand die belt terwijl u met een patiënt bezig bent?
 
-Voor €39 per maand krijgt u een <strong>persoonlijke telefonische assistent</strong> die de telefoon opneemt wanneer u met een patiënt bezig bent. Zo worden uw therapeuten ontlast en krijgen uw patiënten altijd iemand aan de lijn.
+Die beller hangt op — en u weet niet wie het was, of wat de reden was.
 
-Hoe dan ook, ik wens u een fijne werkweek.`
-  },
-  {
-    subject: "Probeer het zelf: bel onze AI-assistent (gratis demo)",
-    body: n => `Beste ${n},
+Terugbellen betekent dat u daar later opnieuw tijd voor moet maken — terwijl de kans groot is dat u elkaar mist.
 
-Benieuwd hoe een AI-telefonist klinkt in de praktijk? U kunt het nu zelf ervaren — geen installatie, geen verplichtingen.
+Onze telefonische AI-assistent neemt op wanneer u dat zelf niet kunt. Zij beantwoordt vragen, noteert de gegevens van de beller en zorgt ervoor dat u precies weet wie er belde en waarom.
 
-Wij hebben een nep-praktijk (Fysio DEMO) ingericht met echte informatie, zodat u precies kunt horen hoe de assistent uw patiënten te woord staat.
+Zo mist u geen aanvragen en hoeft u niet zonder context terug te bellen.
 
-Wat kunt u vragen tijdens de demo?
-Bel gerust met een van de volgende vragen:
+Wilt u zelf even horen hoe zij klinkt?
 
-· Een afspraak maken, wijzigen of annuleren
-· Openingstijden of parkeermogelijkheden
-· Tarieven en vergoedingen
-· Welke klachten of specialisaties de praktijk behandelt
-
-De assistent noteert de gegevens van de beller en stuurt automatisch een e-mail naar de praktijk — precies zoals het bij ú zou werken.
-
-Bel: +31 26 79 132 73
-
-Heeft u vragen na de demo? Ik vertel u graag meer.`
+Bel onze Belgische demo: <strong>+32 78 70 04 02</strong> — geheel vrijblijvend.`
   }
+
 ];
 
 let current = 0;
 
-// Pretvara HTML template (sa <strong> i \n) u plain text (bez tagova, sa pravim newline-ovima)
+
+/* =========================================================
+   HTML → PLAIN TEXT
+   ========================================================= */
+
 function htmlToPlainText(html) {
   return html
     .replace(/<br\s*\/?>/gi, '\n')
@@ -259,108 +464,220 @@ function htmlToPlainText(html) {
     .replace(/<\/?b>/gi, '');
 }
 
+
+/* =========================================================
+   TAB SWITCH
+   ========================================================= */
+
 function setTab(i) {
   current = i;
-  document.querySelectorAll('.tab').forEach((t, j) => t.classList.toggle('active', i === j));
+
+  document
+    .querySelectorAll('.tab')
+    .forEach((t, j) => {
+      t.classList.toggle('active', i === j);
+    });
+
   render();
 }
 
+
+/* =========================================================
+   NAME
+   ========================================================= */
+
 function getName() {
-  const v = document.getElementById('nameInput').value.trim();
+  const v = document
+    .getElementById('nameInput')
+    .value
+    .trim();
+
   return v || '[Naam]';
 }
 
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+
 function render() {
+
   const t = templates[current];
-  document.getElementById('subjText').textContent = t.subject;
-  const preview = document.getElementById('preview');
-  const bodyText = t.body(getName());
 
-  // Pretvori \n u <br> da preview izgleda kao u emailu, ali ostavi <strong> netaknut
-  const withBreaks = bodyText.replace(/\n/g, '<br>');
+  document.getElementById('subjText').textContent =
+    t.subject;
 
-  if (t.img && withBreaks.includes('[IMG]')) {
-    const parts = withBreaks.split('<br>[IMG]<br>');
-    preview.innerHTML =
-      '<span>' + parts[0] + '</span>' +
-      '<img src="' + SCREENSHOT + '" alt="Voorbeeld e-mail samenvatting">' +
-      (parts[1] ? '<span>' + parts[1] + '</span>' : '');
-  } else {
-    preview.innerHTML = withBreaks;
-  }
+  const preview =
+    document.getElementById('preview');
 
-  const cb = document.getElementById('copyBody');
-  cb.textContent = 'Kopieer volledige e-mail';
+  const bodyText =
+    t.body(getName());
+
+  const withBreaks =
+    bodyText.replace(/\n/g, '<br>');
+
+  preview.innerHTML =
+    withBreaks;
+
+  const cb =
+    document.getElementById('copyBody');
+
+  cb.textContent =
+    'Kopieer volledige e-mail';
+
   cb.classList.remove('done');
-  const cs = document.getElementById('copySubj');
-  cs.textContent = 'Kopieer';
+
+  const cs =
+    document.getElementById('copySubj');
+
+  cs.textContent =
+    'Kopieer';
+
   cs.classList.remove('done');
 }
 
+
+/* =========================================================
+   COPY BODY
+   ========================================================= */
+
 function copyBody() {
-  const t = templates[current];
-  const rawText = t.body(getName());
-  const btn = document.getElementById('copyBody');
+
+  const t =
+    templates[current];
+
+  const rawText =
+    t.body(getName());
+
+  const btn =
+    document.getElementById('copyBody');
+
 
   function markDone() {
-    btn.textContent = 'Gekopieerd ✓';
+
+    btn.textContent =
+      'Gekopieerd ✓';
+
     btn.classList.add('done');
-    setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
+
+    setTimeout(() => {
+
+      btn.textContent =
+        'Kopieer volledige e-mail';
+
+      btn.classList.remove('done');
+
+    }, 2000);
   }
+
 
   function markFailed() {
-    btn.textContent = 'Kopiëren mislukt';
-    setTimeout(() => { btn.textContent = 'Kopieer volledige e-mail'; btn.classList.remove('done'); }, 2000);
+
+    btn.textContent =
+      'Kopiëren mislukt';
+
+    setTimeout(() => {
+
+      btn.textContent =
+        'Kopieer volledige e-mail';
+
+      btn.classList.remove('done');
+
+    }, 2000);
   }
 
-  let htmlBody;
-  let plainText;
 
-  if (t.img && rawText.includes('[IMG]')) {
-    const parts = rawText.split('\n[IMG]\n');
-    htmlBody =
-      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
-      parts[0].replace(/\n/g, '<br>') +
-      '</div>' +
-      '<img src="' + SCREENSHOT + '" style="max-width:420px;margin:12px 0;border-radius:6px;" alt="Voorbeeld e-mail">' +
-      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
-      (parts[1] ? parts[1].replace(/\n/g, '<br>') : '') +
-      '</div>';
-    plainText = htmlToPlainText(rawText.split('\n[IMG]\n').join('\n'));
-  } else {
-    htmlBody =
-      '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
-      rawText.replace(/\n/g, '<br>') +
-      '</div>';
-    plainText = htmlToPlainText(rawText);
-  }
+  const htmlBody =
+    '<div style="font-family:Arial,sans-serif;font-size:14px;line-height:1.8;">' +
+    rawText.replace(/\n/g, '<br>') +
+    '</div>';
+
+
+  const plainText =
+    htmlToPlainText(rawText);
+
 
   try {
-    const htmlBlob = new Blob([htmlBody], { type: 'text/html' });
-    const textBlob = new Blob([plainText], { type: 'text/plain' });
+
+    const htmlBlob =
+      new Blob(
+        [htmlBody],
+        { type: 'text/html' }
+      );
+
+    const textBlob =
+      new Blob(
+        [plainText],
+        { type: 'text/plain' }
+      );
+
     navigator.clipboard.write([
       new ClipboardItem({
         'text/html': htmlBlob,
         'text/plain': textBlob
       })
-    ]).then(markDone).catch(() => {
-      navigator.clipboard.writeText(plainText).then(markDone).catch(markFailed);
+    ])
+    .then(markDone)
+    .catch(() => {
+
+      navigator.clipboard
+        .writeText(plainText)
+        .then(markDone)
+        .catch(markFailed);
+
     });
+
   } catch (e) {
-    navigator.clipboard.writeText(plainText).then(markDone).catch(markFailed);
+
+    navigator.clipboard
+      .writeText(plainText)
+      .then(markDone)
+      .catch(markFailed);
+
   }
 }
 
+
+/* =========================================================
+   COPY SUBJECT
+   ========================================================= */
+
 function copySubj() {
-  navigator.clipboard.writeText(templates[current].subject).then(() => {
-    const btn = document.getElementById('copySubj');
-    btn.textContent = 'Gekopieerd ✓';
-    btn.classList.add('done');
-    setTimeout(() => { btn.textContent = 'Kopieer'; btn.classList.remove('done'); }, 2000);
-  });
+
+  navigator.clipboard
+    .writeText(
+      templates[current].subject
+    )
+    .then(() => {
+
+      const btn =
+        document.getElementById('copySubj');
+
+      btn.textContent =
+        'Gekopieerd ✓';
+
+      btn.classList.add('done');
+
+      setTimeout(() => {
+
+        btn.textContent =
+          'Kopieer';
+
+        btn.classList.remove('done');
+
+      }, 2000);
+
+    });
 }
 
+
+/* =========================================================
+   INITIAL RENDER
+   ========================================================= */
+
 render();
+
 </script>
+
 </body>
 </html>
